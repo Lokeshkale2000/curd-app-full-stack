@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './App.css'; // Corrected import path
+import BlogPostForm from './components/BlogPostForm';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import EditPost from './components/EditPost'; // Import for the new edit page
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <div className="app-content">
+        <Routes>
+          <Route path="/home" element={<Home />} /> {/* Set the homepage to "/" */}
+          <Route path="/BlogPostForm" element={<BlogPostForm />} /> {/* Add post page */}
+          <Route path="/edit-post/:id" element={<EditPost />} /> {/* Edit post with ID */}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
